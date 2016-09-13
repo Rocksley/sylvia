@@ -1,14 +1,8 @@
 <?php
+use App\Route;
+return [
 
-$get = [
-
-  '/' => 'HomeController@welcome',
-  'home' => 'HomeController@welcome',
-];
-
-
-$post = [
-
+Route::get('/','HomeController@welcome'),
+Route::get('/home','HomeController@login'),
 ]
-
 ?>

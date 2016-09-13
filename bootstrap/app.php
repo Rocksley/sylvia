@@ -1,44 +1,24 @@
 <?php
+use App\Route;
+use App\Controller;
+
+$routes = require 'app/routes.php';
+
 if(isset($_GET['url'])){
 
-    if(empty($_GET['url'])){ //If the alias is empty
-      $url = "/"; //Then set URL to root or /
-    }else{
-      $url = $_GET['url']; //Else set URL to get value
-    }
+  $url = $_GET['url'];
+}else{
 
-    $router= new Router;
+  $url = '/';
+}
 
-    $route = explode('@',$router->get($url));
-    $controllerName = $route[0];
-    $functionName = $route[1];
+$method = 'get';
 
-    require_once(__CDIR.$controllerName.'.php');
+foreach($routes as $route){
+  if($route->toCall($url,$method)){
 
-    $controller = new $controllerName;
-    $controller->$functionName();
-  }
-
-  if(isset($_POST['url'])){
-    if(empty($_POST['url'])){
-      $url = '/';
-
-    }else{
-      $url = $_POST['url'];
-    }
-
-    $router= new Router;
-
-    $route = explode('@',$router->get($url));
-    $controllerName = $route[0];
-    $functionName = $route[1];
-
-    require_once(__CDIR.$controllerName.'.php');
-
-    $controller = new $controllerName;
-    $controller->$functionName();
-  
+    $route->call($route->getController(),$route->getFunction(),$route->getUrl());
 
   }
-
+}
 ?>

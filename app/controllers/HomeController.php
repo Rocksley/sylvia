@@ -1,4 +1,6 @@
 <?php
+use App\Controller;
+use App\View;
 
 class HomeController extends Controller{
 
@@ -7,6 +9,9 @@ class HomeController extends Controller{
     return View::make('home/welcome');
   }
 
+  public function login(){
+    return View::make('home/login');
+  }
 }
 
  ?>
