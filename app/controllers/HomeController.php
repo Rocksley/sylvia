@@ -3,9 +3,10 @@
 class HomeController extends Controller{
 
 
-  public function nam(){
-    echo 'assjoe';
+  public function welcome(){
+    return View::make('home/welcome');
   }
+
 }
 
  ?>

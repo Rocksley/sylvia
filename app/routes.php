@@ -2,14 +2,13 @@
 
 $get = [
 
-  '/' => 'HomeController@name',
-
+  '/' => 'HomeController@welcome',
+  'home' => 'HomeController@welcome',
 ];
 
 
 $post = [
 
-  '/' => 'HomeController@nam',
 ]
 
 ?>
