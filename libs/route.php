@@ -7,22 +7,39 @@
     public function __construct($url,$handler,$method){
       $this->method = $method;
       $this->url = $url;
-      $handlerArray = explode('@',$handler);
-      $this->controller = $handlerArray[0];
-      $this->function = $handlerArray[1];
+      if(!empty($handler)){
+
+        $handlerArray = explode('@',$handler);
+        $this->controller = $handlerArray[0];
+        $this->function = $handlerArray[1];
+      }
 
     }
 
     public static function get($url,$controller){
-      return new Route($url,$controller,'get');
+
+      return new Route($url,$controller,'GET');
+
+    }
+
+    public function name($name){
+      $this->name = $name;
+    }
+
+    public function getName(){
+
     }
 
     public function getController(){
+
       return $this->controller;
+
     }
 
     public function getFunction(){
+
       return $this->function;
+
     }
 
     public function getUrl(){
@@ -30,7 +47,8 @@
     }
 
     public function toCall($route,$method){
-      if($route == str_replace('/','',$this->url) && $method == $this->method){
+
+      if($route == $this->url && $method == $this->method){
 
         return true;
 
@@ -45,7 +63,7 @@
     public function call($controller,$function,$url){
 
       require __CDIR.$controller.'.php';
-      echo $controller;
+
       $app = new $controller;
 
         $app->$function();

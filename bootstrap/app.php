@@ -11,12 +11,11 @@ if(isset($_GET['url'])){
 
   $url = '/';
 }
-
-$method = 'get';
+$method = $_SERVER['REQUEST_METHOD'];
 
 foreach($routes as $route){
-  if($route->toCall($url,$method)){
 
+  if($route->toCall($url,$method)){
     $route->call($route->getController(),$route->getFunction(),$route->getUrl());
 
   }
