@@ -10,7 +10,14 @@ class HomeController extends Controller{
   }
 
   public function login(){
+
     return View::make('home/login');
+
+  }
+
+  public function postHandler(){
+    echo $_POST['id'];
+    echo "This is a post request";
   }
 }
 
