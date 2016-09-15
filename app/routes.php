@@ -3,7 +3,7 @@ use App\Route;
 return [
 
 Route::get('/','HomeController@welcome'),
-Route::get('/home','HomeController@login'),
-Route::get('home/greet','HomeController@greet'),
+Route::get('login','HomeController@login'),
+Route::post('/login','HomeController@postHandler'),
 ]
 ?>
